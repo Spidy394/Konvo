@@ -4,9 +4,16 @@ import { SignupPage } from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfiePage from "./pages/ProfiePage";
-import HomePage from "./pages/Homepage";
+import HomePage from "./pages/HomePage";
+import { useAuthStore } from "./store/useAuthStore";
+import { useEffect } from "react";
 
 const App = () => {
+  const { authUser, checkAuth } = useAuthStore()
+
+  useEffect(() =>{
+    checkAuth();
+  }, [checkAuth])
   return (
     <div>
       <Navbar />
