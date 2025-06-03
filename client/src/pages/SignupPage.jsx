@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
+import toast from "react-hot-toast";
 
 export const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,10 +24,21 @@ export const SignupPage = () => {
 
   const { signup, isSigningUp } = useAuthStore();
 
-  const validateForm = () => {};
+  const validateForm = () => {
+    if(!formData.fullName.trim()) return toast.error("Ei je! What's your name, sleuth?");
+    if(!formData.email.trim()) return toast.error("Where should we send the case file?");
+    if(!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("This address won’t lead to the truth. Try again.");
+    if(!formData.userName.trim()) return toast.error("You forgot your codename!");
+    if(!formData.password.trim()) return toast.error("The secret key to the case files is missing!");
+    
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const success = validateForm();
+
+    if(success) signup(formData);
   };
 
   return (
