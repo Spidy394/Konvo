@@ -22,9 +22,9 @@ const LoginPage = () => {
 
   const validateForm = () => {
     if (!formData.emailOrUsername.trim())
-      return toast.error("What’s your name in this reel? 🎞️");
+      return 
     if (!formData.password.trim())
-      return toast.error("Without your key, the projector won’t start 🎬🔐");
+      return
     const isEmail = /\S+@\S+\.\S+/.test(formData.emailOrUsername);
     const loginData = {
       [isEmail ? "email" : "userName"]: formData.emailOrUsername,
