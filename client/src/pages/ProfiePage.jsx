@@ -57,7 +57,7 @@ const ProfiePage = () => {
   };
 
   return (
-    <div className="h-screen pt-20">
+    <div className="h-full pt-20">
       <div className="max-w-2xl mx-auto p-4 py-8">
         <div className="bg-base-300 rounded-xl p-6 space-y-8">
           <div className="text-center">
@@ -87,14 +87,14 @@ const ProfiePage = () => {
                 />
               </label>
             </div>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm">
               {isUpdatingProfile ? "Uploading..." : "Click the camera icon to update your avatar"}
             </p>
           </div>
 
           <div className="space-y-6">
             <div className="space-y-1">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm flex items-center gap-2">
                 <AtSign className="size-4" />
                 Username
               </div>
@@ -104,7 +104,7 @@ const ProfiePage = () => {
                     type="text"
                     value={tempUsername}
                     onChange={(e) => setTempUsername(e.target.value)}
-                    className="flex-1 px-4 py-2.5 bg-base-200 rounded-lg border text-zinc-200 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="flex-1 px-4 py-2.5 bg-base-200 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Enter username"
                     disabled={isUpdatingProfile}
                   />
@@ -125,11 +125,11 @@ const ProfiePage = () => {
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <p className="flex-1 px-4 py-2.5 bg-base-200 rounded-lg border text-zinc-200">{authUser?.userName}</p>
+                  <p className="flex-1 px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.userName}</p>
                   <button
                     onClick={handleUsernameEdit}
                     disabled={isUpdatingProfile}
-                    className="p-2 text-zinc-400 hover:text-zinc-200 hover:bg-base-200 rounded-lg transition-colors"
+                    className="p-2 hover:bg-base-200 rounded-lg transition-colors"
                   >
                     <Edit3 className="size-4" />
                   </button>
@@ -138,7 +138,7 @@ const ProfiePage = () => {
             </div>
 
             <div className="space-y-1">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm flex items-center gap-2">
                 <Info className="size-4" />
                 About
               </div>
@@ -147,14 +147,14 @@ const ProfiePage = () => {
                   <textarea
                     value={tempBio}
                     onChange={(e) => setTempBio(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-base-200 rounded-lg border text-zinc-200 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    className="w-full px-4 py-2.5 bg-base-200 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                     placeholder="Tell us what makes you... you ✨🖋️"
                     rows={3}
                     maxLength={200}
                     disabled={isUpdatingProfile}
                   />
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-zinc-500">{tempBio.length}/200</span>
+                    <span className="text-xs ">{tempBio.length}/200</span>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={handleBioSave}
@@ -175,13 +175,13 @@ const ProfiePage = () => {
                 </div>
               ) : (
                 <div className="flex items-start gap-2">
-                  <p className="flex-1 px-4 py-2.5 bg-base-200 rounded-lg border text-zinc-200 min-h-[44px]">
-                    {authUser?.bio || <span className="text-zinc-500">Tell us what makes you... you ✨🖋️</span>}
+                  <p className="flex-1 px-4 py-2.5 bg-base-200 rounded-lg border min-h-[44px]">
+                    {authUser?.bio || <span className="">Tell us what makes you... you ✨🖋️</span>}
                   </p>
                   <button
                     onClick={handleBioEdit}
                     disabled={isUpdatingProfile}
-                    className="p-2 text-zinc-400 hover:text-zinc-200 hover:bg-base-200 rounded-lg transition-colors mt-0.5"
+                    className="p-2 hover:bg-base-200 rounded-lg transition-colors mt-0.5"
                   >
                     <Edit3 className="size-4" />
                   </button>
@@ -190,19 +190,19 @@ const ProfiePage = () => {
             </div>
 
             <div className="space-y-1">
-              <div className="text-sm text-zinc-100 flex items-center gap-2">
+              <div className="text-sm flex items-center gap-2">
                 <User className="size-4" />
                 Fullname
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border text-zinc-200">{authUser?.fullName}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.fullName}</p>
             </div>
 
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="text-sm flex items-center gap-2">
                 <Mail className="size-4" />
                 Email
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border text-zinc-200">{authUser?.email}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.email}</p>
             </div>
           </div>
 
@@ -215,7 +215,7 @@ const ProfiePage = () => {
               </div>
               <div className="flex items-center justify-between py-2">
                 <span>Active Status</span>
-                <span className="text-green-500">Active</span>
+                <span className="text-green-600">Active</span>
               </div>
             </div>
           </div>
