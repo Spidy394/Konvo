@@ -106,7 +106,18 @@ export const updateProfile = async (req, res) => {
         const updateData = {};
 
         if(profilePic){
-            const uploadResponse = await cloudinary.uploader.upload(profilePic);
+            const uploadResponse = await cloudinary.uploader.upload(profilePic, {
+                transformation: [{
+                    width: 400,
+                    height: 400,
+                    crop: "fill",
+                    gravity: "face",
+                    quality: "auto",
+                    format: "auto"
+                }],
+                folder: "konvo_profiles",
+                public_id: `profile_${userId}_${Date.now()}`
+            });
             updateData.profilePic = uploadResponse.secure_url;
         }
 

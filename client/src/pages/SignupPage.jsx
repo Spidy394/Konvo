@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import {
+  AtSign,
   Eye,
   EyeOff,
   Loader2,
@@ -8,7 +9,6 @@ import {
   Mail,
   MessageSquare,
   User2,
-  UserSearch,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
@@ -110,7 +110,7 @@ export const SignupPage = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <UserSearch className="size-5 text-base-content/40 z-10" />
+                  <AtSign className="size-5 text-base-content/40 z-10" />
                 </div>
                 <input
                   type="text"

@@ -11,7 +11,7 @@ const Navbar = () => {
           <div className="flex items-center gap-8">
             <Link to='/' className="flex items-center gap-2.5 hover:opacity-80 transition-all">
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                <img src="/logo2.png" alt="logo" />
+                <img src="/logo.png" alt="logo" />
               </div>
               <h1 className="text-lg font-bold">Konvo</h1>
             </Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
                   <span className="hidden sm:hidden">Profile</span>
                 </Link>
 
-                <button className="flex gap-2 items-center" onClick={logout}>
+                <button className="flex gap-2 items-center cursor-pointer" onClick={logout}>
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
