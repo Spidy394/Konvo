@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
+import { getReceiverScoketId, io } from "../lib/socket.js";
 
 export const getUsersForSidebar = async (req, res) => {
     try{
@@ -34,7 +35,6 @@ export const getMessages = async (req, res) => {
 };
 
 export const sendMessage = async (req, res) => {
-    const userId = req.user_id;
     try {
         const { text, image } = req.body;
         const { id: receiverId } = req.params;
@@ -44,7 +44,7 @@ export const sendMessage = async (req, res) => {
         if(image){
             const uploadResponse = await cloudinary.uploader.upload(image, {
                 folder: "media",
-                public_id: `profile_${userId}_${DataTransfer.now()}`
+                public_id: `profile_${senderId}_${Date.now()}`
             });
             imageUrl = uploadResponse.secure_url;
         }
@@ -58,7 +58,11 @@ export const sendMessage = async (req, res) => {
 
         await newMessage.save();
 
-        // todo: realtime functionality => socket.io
+        const receiverScoketId = getReceiverScoketId(receiverId);
+        if(receiverScoketId){
+            io.to(receiverScoketId).emit("newMessage", newMessage);
+        }
+
 
         res.status(201).json(newMessage)
     } catch (error) {
