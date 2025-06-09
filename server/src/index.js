@@ -12,6 +12,8 @@ dotenv.config();
 const PORT = process.env.PORT || 5001;
 const __dirname = path.resolve();
 
+app.set('query parser', 'simple');
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser()); 
@@ -20,19 +22,15 @@ app.use(cors({
   credentials: true
 }));
 
-
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 if(process.env.NODE_ENV === "production"){
-  const clientDistPath = path.join(__dirname, "../../client/dist");
+  const clientDistPath = path.join(__dirname, "../client/dist");
   app.use(express.static(clientDistPath));
 
-  app.get("*", (req, res) => {
-    if (req.path.startsWith('/api/')) {
-      return res.status(404).json({ message: 'API route not found' });
-    }
-    res.sendFile(path.join(clientDistPath, "index.html"));
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
   });
 }
 
