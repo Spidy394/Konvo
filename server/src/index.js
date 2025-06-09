@@ -20,14 +20,19 @@ app.use(cors({
   credentials: true
 }));
 
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname, "../../client/dist")));
+  const clientDistPath = path.join(__dirname, "../../client/dist");
+  app.use(express.static(clientDistPath));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+    if (req.path.startsWith('/api/')) {
+      return res.status(404).json({ message: 'API route not found' });
+    }
+    res.sendFile(path.join(clientDistPath, "index.html"));
   });
 }
 
