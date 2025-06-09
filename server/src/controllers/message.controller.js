@@ -34,6 +34,7 @@ export const getMessages = async (req, res) => {
 };
 
 export const sendMessage = async (req, res) => {
+    const userId = req.user_id;
     try {
         const { text, image } = req.body;
         const { id: receiverId } = req.params;
@@ -41,7 +42,10 @@ export const sendMessage = async (req, res) => {
 
         let imageUrl;
         if(image){
-            const uploadResponse = await cloudinary.uploader.upload(image);
+            const uploadResponse = await cloudinary.uploader.upload(image, {
+                folder: "media",
+                public_id: `profile_${userId}_${DataTransfer.now()}`
+            });
             imageUrl = uploadResponse.secure_url;
         }
 
