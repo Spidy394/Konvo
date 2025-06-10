@@ -1,6 +1,6 @@
 <div align="center">
 
-# <img src="/client/public/logo.png" width="48" height="48" style="vertical-align: middle;"> Konvo
+# 💬 Konvo
 
 ### *Where conversations come alive in real-time*
 
