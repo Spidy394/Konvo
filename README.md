@@ -298,20 +298,19 @@ PORT=5001
 NODE_ENV=development
 
 # Database
-MONGODB_URI=mongodb://localhost:27017/konvo
-# or for Atlas: mongodb+srv://username:password@cluster.mongodb.net/konvo
+MONGODB_URI=
 
 # JWT Configuration
-JWT_SECRET=your-super-secret-jwt-key-here
-JWT_EXPIRES_IN=7d
+JWT_SECRET=
+JWT_EXPIRES_IN=
 
 # Cloudinary Configuration
-CLOUDINARY_CLOUD_NAME=your-cloud-name
-CLOUDINARY_API_KEY=your-api-key
-CLOUDINARY_API_SECRET=your-api-secret
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 
 # CORS Configuration
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=
 ```
 
 </details>
