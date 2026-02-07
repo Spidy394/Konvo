@@ -7,7 +7,7 @@ import messageRoutes from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js"
 import { app, server } from "./lib/socket.js";
 import path from 'path';
-import job from "./lib/cron.js";
+// import job from "./lib/cron.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 5001;
@@ -23,7 +23,7 @@ app.use(cors({
   credentials: true
 }));
 
-if(process.env.NODE_ENV === "production") job.start();
+// if(process.env.NODE_ENV === "production") job.start();
 
 app.get("/health", (req, res) => {
   res.status(200).json({
